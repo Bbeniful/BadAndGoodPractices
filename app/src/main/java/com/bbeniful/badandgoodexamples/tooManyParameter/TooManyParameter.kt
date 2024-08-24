@@ -37,6 +37,8 @@ interface PersonInterface
 
 interface ProgrammingLanguageInterface
 
+//Bad example
+//Hard to read and maintain
 class BadViewModel(
     val vegetable: VegetableInterface,
     val fruit: FruitInterface,
@@ -44,6 +46,10 @@ class BadViewModel(
     val language: ProgrammingLanguageInterface
 ): ViewModel()
 
+
+
+//Solution
+//Group the related data
 data class Produce(
     val vegetable: VegetableInterface,
     val fruit: FruitInterface
@@ -54,6 +60,7 @@ data class Developer(
     val language: ProgrammingLanguageInterface
 )
 
+//We can use Dependency Injection for the Object
 class GoodViewModel(
     private val produce: Produce,
     private val developer: Developer
