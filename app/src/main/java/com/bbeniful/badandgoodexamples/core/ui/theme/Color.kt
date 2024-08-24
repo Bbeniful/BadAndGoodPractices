@@ -1,4 +1,4 @@
-package com.bbeniful.badandgoodexamples.ui.theme
+package com.bbeniful.badandgoodexamples.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
