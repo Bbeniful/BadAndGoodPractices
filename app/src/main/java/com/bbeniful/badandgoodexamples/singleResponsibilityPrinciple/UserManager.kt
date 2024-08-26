@@ -2,7 +2,7 @@ package com.bbeniful.badandgoodexamples.singleResponsibilityPrinciple
 
 
 //Bad Example
-// This class does too many things
+//This class does too many things
 class UserManager {
     fun createUser() {}
 
@@ -26,6 +26,13 @@ interface MessageSender {
 
 class EmailSender: MessageSender {
     override fun sendMessage(message: String) {}
+}
+
+class Sender(private val sender: MessageSender) {
+
+    fun send(message: String) {
+        sender.sendMessage(message)
+    }
 }
 
 class UserRepository {

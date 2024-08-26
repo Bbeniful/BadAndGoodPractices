@@ -1,6 +1,5 @@
 package com.bbeniful.badandgoodexamples.coupling
 
-import kotlin.random.Random
 
 class BadPdfGenerator
 class BadReportCreator(
@@ -11,17 +10,20 @@ interface Generator {
     fun generate()
 }
 
-class PdfGenerator: Generator {
+class PdfGenerator : Generator {
     override fun generate() {
         TODO("Not yet implemented")
     }
 }
 
-class ExcelGenerator: Generator {
+class ExcelGenerator : Generator {
     override fun generate() {
         TODO("Not yet implemented")
     }
 }
 
-class GoodReportCreator(val generator: Generator) {
+class GoodReportCreator() {
+    fun createReport(generator: Generator) {
+        generator.generate()
+    }
 }

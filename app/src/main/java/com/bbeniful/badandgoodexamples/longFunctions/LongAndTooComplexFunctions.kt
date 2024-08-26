@@ -8,7 +8,7 @@ class LongAndTooComplexFunctions {
         var result = ""
         val reversedInput = input.reversed()
         val charArray = reversedInput.toCharArray()
-        var i =0
+        var i = 0
         while (i < charArray.size) {
             if (charArray[i] == 'a' || charArray[i] == 'e' || charArray[i] == 'i' || charArray[i] == 'o' || charArray[i] == 'u') {
                 result += charArray[i].uppercaseChar()
@@ -23,11 +23,9 @@ class LongAndTooComplexFunctions {
 
         result = result.reversed()
         return result
-
     }
 
     //Solution
-
     //Each method does only one thing and does it well.
     //Easy to read, maintain and understand
     fun processString(input: String): String {
