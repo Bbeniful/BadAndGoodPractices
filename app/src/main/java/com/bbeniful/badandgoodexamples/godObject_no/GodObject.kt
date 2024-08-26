@@ -1,4 +1,4 @@
-package com.bbeniful.badandgoodexamples.godObject
+package com.bbeniful.badandgoodexamples.godObject_no
 
 class UserObject
 class SessionObject
