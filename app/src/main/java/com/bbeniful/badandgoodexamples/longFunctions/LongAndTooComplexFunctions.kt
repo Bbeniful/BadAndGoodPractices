@@ -4,6 +4,7 @@ class LongAndTooComplexFunctions {
 
     //Bad example
     //Very hard to maintain and understand
+    //more hard to debug
     fun processData(input: String): String {
         var result = ""
         val reversedInput = input.reversed()

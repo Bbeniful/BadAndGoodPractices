@@ -13,7 +13,7 @@ class GodObject {
 }
 
 //Good example
-//Separate classes by grouping them by their responsibility
+//Decompose the GodObject into smaller classes with single responsibility
 class UserSession(
     private val userObject: UserObject,
     private val sessionObject: SessionObject,

@@ -14,7 +14,6 @@ class UserManager {
 //Good Example
 // Classes are responsible for one thing
 // Easy to maintain and read
-
 class UserCreator {
     fun createUser() {}
 }

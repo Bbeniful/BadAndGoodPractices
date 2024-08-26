@@ -28,6 +28,9 @@ class GoodPerson(
     val details: PersonDetails
 )
 
+//We also can use Builder Pattern, but it is not a good example for every case
+
+
 //GMA Example
 interface VegetableInterface
 
