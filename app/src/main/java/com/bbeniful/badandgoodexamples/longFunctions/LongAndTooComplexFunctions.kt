@@ -4,63 +4,65 @@ class LongAndTooComplexFunctions {
 
     //Bad example
     //Very hard to maintain and understand
-    //more hard to debug
-    fun processData(input: String): String {
-        var result = ""
-        val reversedInput = input.reversed()
-        val charArray = reversedInput.toCharArray()
-        var i = 0
-        while (i < charArray.size) {
-            if (charArray[i] == 'a' || charArray[i] == 'e' || charArray[i] == 'i' || charArray[i] == 'o' || charArray[i] == 'u') {
-                result += charArray[i].uppercaseChar()
-                result += charArray[i].uppercaseChar()
-            } else {
-                result += charArray[i]
-                result += charArray[i]
-                result += charArray[i]
-            }
-            i++
+    //Harder to debug
+    fun processUserData(name: String, email: String) {
+        // 1. Validate the email format.
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            throw IllegalArgumentException("Invalid email format")
         }
 
-        result = result.reversed()
-        return result
+        // 2. Save user data to the database.
+        val user = User(name, email)
+        val userDao = UserDao() // Assuming you have a UserDao class
+        userDao.insert(user)
+
+        // 3. Send a welcome email.
+        val emailService = EmailService() // Assuming you have an EmailService class
+        emailService.sendWelcomeEmail(email)
     }
 
     //Solution
     //Each method does only one thing and does it well.
     //Easy to read, maintain and understand
-    fun processString(input: String): String {
-        val reversed = reverseString(input)
-        val processed = processCharacters(reversed)
-        return reverseString(processed)
-    }
 
-    private fun reverseString(input: String): String {
-        return input.reversed()
-    }
-
-    private fun processCharacters(input: String): String {
-        var result = ""
-        for (char in input) {
-            result += if (isVowel(char)) {
-                duplicateCharacter(char.uppercaseChar())
-            } else {
-                triplicateCharacter(char)
-            }
+    fun registerUser(name: String, email: String) {
+        if (!isValidEmail(email)) {
+            throw IllegalArgumentException("Invalid email format")
         }
-        return result
+
+        val user = User(name, email)
+        saveUser(user)
+        sendWelcomeEmail(email)
     }
 
-    private fun isVowel(char: Char): Boolean {
-        val vowels = setOf('a', 'e', 'i', 'o', 'u')
-        return char.lowercaseChar() in vowels
+    // Function to validate email format
+    private fun isValidEmail(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    private fun duplicateCharacter(char: Char): String {
-        return "$char$char"
+    // Function to save user data
+    private fun saveUser(user: User) {
+        val userDao = UserDao()
+        userDao.insert(user)
     }
 
-    private fun triplicateCharacter(char: Char): String {
-        return "$char$char$char"
+    // Function to send a welcome email
+    private fun sendWelcomeEmail(email: String) {
+        val emailService = EmailService()
+        emailService.sendWelcomeEmail(email)
     }
+
 }
+
+class EmailService {
+    fun sendWelcomeEmail(email: String) {}
+}
+
+class UserDao {
+    fun insert(user: User) {}
+}
+
+data class User(
+    val name: String,
+    val email: String
+)
